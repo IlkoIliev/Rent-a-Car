@@ -1,0 +1,14 @@
+﻿@{ var loggedUser = API.Models.AuthenticationManager.LoggedUser; }
+
+<ul class="nav navbar-nav">
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+
+    @if (loggedUser != null)
+    {
+        <li>@Html.ActionLink("Profile", "Index", "Users")</li>
+        <li>@Html.ActionLink("Cars", "Index", "Cars")</li>
+        <li>@Html.ActionLink("Rents", "Index", "Rents")</li>
+    }
+
+</ul>
+

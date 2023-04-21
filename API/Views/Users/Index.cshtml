@@ -1,0 +1,84 @@
+﻿@using API.Models.Users
+@model API.Models.Users.UsersIndexVM
+@{
+    var loggedUser = API.Models.AuthenticationManager.LoggedUser;
+    ViewBag.Title = "Profile";
+}
+
+<p>Здравей, @loggedUser.Firstname @loggedUser.Sirname</p>
+@if (ViewBag.Firstname != null && ViewBag.Sirname != null)
+{
+    <div class="alert alert-success" role="alert">Успешно изтрихте, @ViewBag.Firstname @ViewBag.Sirname</div>
+}
+
+<p>
+    @Html.ActionLink("Details", "Details", "Users", new { id = loggedUser.Id }, htmlAttributes: new { title = "Manage" })
+    @Html.ActionLink("Order", "Order", "Users", routeValues: null, htmlAttributes: new { title = "Manage" })
+    @Html.ActionLink("Edit", "Edit", "Users", new { id = loggedUser.Id }, htmlAttributes: new { title = "Manage" })
+    @Html.ActionLink("Delete", "Delete", "Users", new { id = loggedUser.Id }, htmlAttributes: new { title = "Manage" })
+</p>
+@if (loggedUser.Role.Name == "owner")
+{
+    <a href="@Url.Action("Create", "Users")" class="btn btn-success btn-icon-split">
+        <span class="icon text-white-50">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+            </svg>
+        </span>
+        <span class="text">Create new user</span>
+    </a>
+}
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Role</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Username</th>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Role</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </tfoot>
+            <tbody>
+                @foreach (var item in Model.Items)
+                {
+                    <tr>
+                        <td>@item.Username</td>
+                        <td>@item.Firstname</td>
+                        <td>@item.Sirname</td>
+                        <td>@item.RoleName</td>
+                        <th>
+                            <a href="@Url.Action("Details", "Users", new {Id = item.Id})" class="btn btn-info btn-icon-split">
+                                <span class="text">Details</span>
+                            </a>
+                        </th>
+                        <td>
+                            <a href="@Url.Action("Edit", "Users", new {Id = item.Id})" class="btn btn-warning btn-icon-split">
+                                <span class="text">Edit</span>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Delete", "Users", new {Id = item.Id})" class="btn btn-danger btn-circle">
+                                <i class="glyphicon glyphicon-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

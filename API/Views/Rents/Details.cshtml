@@ -1,0 +1,170 @@
+﻿@model API.Models.Rents.RentsDetailsVM
+
+@{
+    var loggedUser = API.Models.AuthenticationManager.LoggedUser;
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Rent Details</h4>
+    <hr />
+    <p>Здравей, @loggedUser.Firstname @loggedUser.Sirname детайли на поръчка №@Model.Id</p>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>User information</th>
+                        <th>Car information</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th colspan="2">Rent information</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <tr>
+                        <td>
+                            <dl class="dl-horizontal">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Username)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Username)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Firstname)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Firstname)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Sirname)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Sirname)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Egn)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Egn)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.PhoneNumber)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Email)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Email)
+                                </dd>
+                            </dl>
+                        </td>
+                        <td>
+                            <dl class="dl-horizontal">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Brand)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Brand)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Model)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Model)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Year)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Year)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Seats)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Seats)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Price)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Price)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Description)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Description)
+                                </dd>
+                            </dl>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th colspan="2">
+                            <dl class="dl-horizontal">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.StartDate)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.StartDate)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.EndDate)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.EndDate)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.State)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.State)
+                                </dd>
+                            </dl>
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

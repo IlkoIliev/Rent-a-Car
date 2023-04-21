@@ -1,0 +1,21 @@
+﻿@{ var loggedUser = API.Models.AuthenticationManager.LoggedUser; }
+@if (loggedUser != null)
+{
+    using (Html.BeginForm("Logout", "Home", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            @Html.ActionLink("Hello " + loggedUser.Username + "!", "Details", "Users", new { Id = loggedUser.Id }, htmlAttributes: new { title = "View your profile" })
+                        </li>
+                        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                    </ul> }
+            }
+            else
+            {
+<ul class="nav navbar-nav navbar-right">
+    <li>@Html.ActionLink("Register", "Register", "Home", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+    <li>@Html.ActionLink("Log in", "Login", "Home", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+</ul>}
+
